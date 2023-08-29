@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          screens: {
+            sm: "480px",
+            md: "768px",
+            lg: "976px",
+            xl: "1440px",
+          },
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans"],
+              bitter: ["Bitter", "sans-serif"],
+            },
+            colors: {
+              offWhite: "hsl(0, 0%, 94%)",
+              offBlack: "hsl(0, 0%, 8%)",
+              smokeyGrey: "hsl(0, 0%, 85%)",
+              labelGray: "hsl(0, 0%, 65%)",
+              darkGrey: "	hsl(0, 0%, 33%)",
+              titleGreen: "hsl(156, 58%, 62%)",
+              background: "hsl(139, 76%, 71%)",
+              lightRed: "hsl(0, 100%, 67%)",
+            },
+            boxShadow: {
+              solid: "3px 3px rgba(0, 0, 0, 0.3)",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+
+    <title>Legenda automatica</title>
+  </head>
+  <!-- Body -->
+  <body
+    class="flex flex-col h-screen items-center justify-center bg-background font-poppins"
+  >
+    <!-- Card -->
+    <div class="bg-offWhite w-9/12 h-5/6 rounded-[36px] shadow-solid">
+      <!-- Title -->
+      <h1
+        class="p-6 text-[46px] font-bitter font-bold text-titleGreen text-center drop-shadow-md"
+      >
+        DESCRITIVO DE JARDINAGEM
+      </h1>
+      <!-- Divider -->
+      <div
+        class="mx-auto w-64 border-dotted border-0 border-t-4 border-smokeyGrey"
+      ></div>
+      <!-- Input Form Boxes -->
+      <form class="py-6 space-y-6">
+        <!-- Male or Female Pronouns -->
+        <div class="flex justify-center">
+          <div class="flex justify-evenly w-4/12">
+            <!-- Male -->
+            <input
+              onchange="check()"
+              checked
+              id="m"
+              name="mf"
+              type="radio"
+              class="hidden"
+            />
+            <label for="m">
+              <div
+                id="m-div"
+                class="py-1.5 px-3 rounded-full text-2xl cursor-pointer duration-500"
+              >
+                <i class="fa-solid fa-mars"></i>
+              </div>
+            </label>
+
+            <!-- Female -->
+            <input
+              onchange="check()"
+              id="f"
+              name="mf"
+              type="radio"
+              class="hidden"
+            />
+            <label for="f">
+              <div
+                id="f-div"
+                class="py-1.5 px-3.5 rounded-full text-2xl cursor-pointer duration-500"
+              >
+                <i class="fa-solid fa-venus"></i>
+              </div>
+            </label>
+          </div>
+        </div>
+        <!-- "Atividade" input -->
+        <div class="flex items-center justify-center space-x-9">
+          <div class="flex flex-col">
+            <label class="text-xs ml-2 text-labelGray" for="atividade"
+              >ATIVIDADE</label
+            >
+            <select
+              class="p-3 border-2 rounded-xl border-labelGray"
+              name="atividade"
+              id="atividade"
+            >
+              <option value="a Limpeza">Limpeza</option>
+              <option value="o Corte de grama">Corte de Grama</option>
+              <option value="a Poda de árvore">Poda de Árvore</option>
+            </select>
+          </div>
+          <!-- "Local" input -->
+          <div class="flex flex-col">
+            <label class="text-xs ml-2 text-labelGray" for="local">LOCAL</label>
+            <input
+              class="p-3 border-2 rounded-xl border-labelGray"
+              type="text"
+              id="local"
+              name="local"
+            />
+          </div>
+          <!-- "Data" input -->
+          <div class="flex flex-col">
+            <label class="text-xs ml-2 text-labelGray" for="data">DATA</label>
+            <input
+              class="p-3 border-2 rounded-xl border-labelGray"
+              type="date"
+              id="data"
+              name="data"
+            />
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            name="submit"
+            class="py-1 px-3 font-bold rounded-full bg-titleGreen"
+          >
+            GERAR
+            <i class="fa-solid fa-gear"></i>
+          </button>
+        </div>
+      </form>
+      <!-- Divider -->
+      <div
+        class="mx-auto w-64 border-dotted border-0 border-t-4 border-smokeyGrey"
+      ></div>
+      <!-- Display text "Descriçao e Título" -->
+      <div class="ml-40 my-6 space-y-4">
+        <!-- Título -->
+        <div class="flex items-center space-x-4">
+          <button
+            id="titulo-btn"
+            class="py-1 px-2 rounded-full bg-titleGreen hover:bg-opacity-80"
+          >
+            <i class="fa-solid fa-copy"></i>
+          </button>
+          <p id="titulo" class="text-sm italic text-darkGrey">
+            aqui estará o título
+          </p>
+        </div>
+        <!-- Descrição -->
+        <div class="flex items-center space-x-4">
+          <button
+            id="desc-btn"
+            class="py-1 px-2 rounded-full bg-titleGreen hover:bg-opacity-80"
+          >
+            <i class="fa-solid fa-copy"></i>
+          </button>
+          <p id="descricao" class="text-sm italic text-darkGrey">
+            aqui estará a descrição
+          </p>
+        </div>
+      </div>
+    </div>
+    <p class="mt-4 text-xs">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/matheusreina"
+        ><i class="fa-brands fa-github"></i> MATHEUS REINA</a
+      >
+      l 2023 ©
+    </p>
+    <script src="script.js"></script>
+  </body>
+</html>
