@@ -17,6 +17,11 @@ document.querySelector("form").addEventListener("submit", function (e) {
     .value.split("-")
     .reverse()
     .join("/");
+  if (m.checked) {
+    mf = "ao";
+  } else if (f.checked) {
+    mf = "à";
+  }
 
   // change innerHTML
   titulo.innerHTML = `${atividade.slice(
