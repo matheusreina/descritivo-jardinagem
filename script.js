@@ -27,7 +27,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
   titulo.innerHTML = `${atividade.slice(
     2
   )} das áreas próximas ${mf} ${local} (${data})`;
-  descricao.innerHTML = `No dia ${data} foi realizado ${atividade} das áreas internas ${mf} ${local}`;
+  descricao.innerHTML = `No dia ${data} foi realizado ${atividade} das áreas próximas ${mf} ${local}`;
 });
 
 // Spin the gear icon
